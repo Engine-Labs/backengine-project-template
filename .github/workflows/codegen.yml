@@ -59,5 +59,8 @@ jobs:
           git add .
           git commit -m "Backengine codegen - $NOW"
 
+      - name: Push changes
+        run: git push origin backengine-codegen-$NOW
+
       - name: Create PR
         run: gh pr create -B main -H backengine-codegen-${{ env.NOW }} --title 'Backengine codegen' --body 'Created by Backengine - ${{ env.NOW }}' --no-maintainer-edit

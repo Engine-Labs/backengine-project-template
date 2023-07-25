@@ -1,0 +1,63 @@
+name: backengine-codegen
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_key:
+        description: "Backengine project API key"
+      project_id:
+        description: "Backengine project Id"
+      base_url:
+        description: "Backengine base url"
+      commit_email:
+        description: "Email address for commits"
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  BACKENGINE_API_KEY: ${{ github.event.inputs.api_key }}
+  BACKENGINE_PROJECT_ID: ${{ github.event.inputs.project_id }}
+  BACKENGINE_BASE_URL: ${{ github.event.inputs.base_url }}
+
+jobs:
+  specs:
+    name: Backengine Codegen
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "lts/Hydrogen"
+
+      - name: Ensure latest codegen package
+        run: npm update @backengine/codegen
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Run codegen
+        run: npm run generate
+
+      - name: Set current date as env variable
+        run: echo "NOW=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
+
+      - name: Create a new branch
+        run: git checkout -b backengine-codegen-$NOW
+
+      - name: Commit changes
+        run: |
+          git config --local user.email ${{ github.event.inputs.commit_email }}
+          git config --local user.name "Backengine"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add .
+          git commit -m "Backengine codegen - $NOW"
+
+      - name: Push changes
+        run: git push origin backengine-codegen-$NOW
+
+      - name: Create PR
+        run: gh pr create -B main -H backengine-codegen-${{ env.NOW }} --title 'Backengine codegen' --body 'Created by Backengine - ${{ env.NOW }}' --no-maintainer-edit

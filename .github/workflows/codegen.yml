@@ -51,9 +51,9 @@ jobs:
         working-directory: ./postgres-meta
         run: npm ci
 
-      - name: Run postgres-meta
+      - name: Run postgres-meta in background
         working-directory: ./postgres-meta
-        run: npm run dev
+        run: npm run dev &
 
       - name: Install dependencies
         run: npm ci

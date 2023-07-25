@@ -7,7 +7,7 @@ on:
         description: "Postgres hostname"
         required: true
         default: "postgres"
-      pg_db_name:
+      pg_dbname:
         description: "Postgres database name"
         required: true
         default: "postgres"
@@ -25,9 +25,10 @@ env:
   PG_META_PORT: 8080
   PG_META_DB_PORT: 5432
   PG_META_DB_HOST: ${{ github.event.inputs.pg_host }}
-  PG_META_DB_NAME: ${{ github.event.inputs.pg_db_name }}
+  PG_META_DB_NAME: ${{ github.event.inputs.pg_dbname }}
   PG_META_DB_USER: ${{ github.event.inputs.pg_user }}
   PG_META_DB_PASSWORD: ${{ github.event.inputs.pg_password }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   specs:

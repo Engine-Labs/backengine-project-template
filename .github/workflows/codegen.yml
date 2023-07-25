@@ -1,4 +1,4 @@
-name: specs
+name: backengine-codegen
 
 on:
   workflow_dispatch:

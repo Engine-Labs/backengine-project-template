@@ -56,7 +56,7 @@ jobs:
         run: |
           git config --local user.email "codegen@backengine.dev"
           git config --local user.name "Backengine"
-          git add -- . ':!<postgres-meta>'
+          git add .
           git commit -m "Backengine codegen - $NOW"
 
       - name: Create PR

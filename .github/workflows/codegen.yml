@@ -60,4 +60,4 @@ jobs:
           git commit -m "Backengine codegen - $NOW"
 
       - name: Create PR
-        run: gh pr create -B main -H backengine-codegen-${{ github.env.NOW }} --title 'Backengine codegen' --body 'Created by Backengine - ${{ github.env.NOW }}' --no-maintainer-edit
+        run: gh pr create -B main -H backengine-codegen-${{ env.NOW }} --title 'Backengine codegen' --body 'Created by Backengine - ${{ env.NOW }}' --no-maintainer-edit

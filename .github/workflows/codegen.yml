@@ -4,31 +4,11 @@ name: backengine-codegen
 on:
   workflow_dispatch:
     inputs:
-      pg_host:
-        description: "Postgres hostname"
+      database_url:
+        description: "Postgres database url"
         required: true
-        default: "postgres"
-      pg_dbname:
-        description: "Postgres database name"
-        required: true
-        default: "postgres"
-      pg_user:
-        description: "Postgres user"
-        required: true
-        default: "postgres"
-      pg_password:
-        description: "Postgres password"
-        required: true
-        default: "postgres"
 
 env:
-  PG_META_HOST: "0.0.0.0"
-  PG_META_PORT: 1337
-  PG_META_DB_PORT: 5432
-  PG_META_DB_HOST: ${{ github.event.inputs.pg_host }}
-  PG_META_DB_NAME: ${{ github.event.inputs.pg_dbname }}
-  PG_META_DB_USER: ${{ github.event.inputs.pg_user }}
-  PG_META_DB_PASSWORD: ${{ github.event.inputs.pg_password }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -46,18 +26,6 @@ jobs:
         with:
           node-version: "lts/Hydrogen"
 
-      - name: Install postgres-meta
-        run: |
-          mkdir -p ./postgres-meta
-          cd ./postgres-meta
-          wget https://github.com/supabase/postgres-meta/releases/download/v0.67.0/postgres-meta-0.67.0-x86_64-linux-gnu.tar.gz
-          tar -xvf postgres-meta-0.67.0-x86_64-linux-gnu.tar.gz
-          chmod +x ./postgres-meta
-
-      - name: Start postgres-meta
-        working-directory: ./postgres-meta
-        run: ./postgres-meta
-
       - name: Install codegen package dependencies
         working-directory: ./backengine-codegen
         run: npm ci
@@ -65,7 +33,6 @@ jobs:
       - name: Build codegen package
         working-directory: ./backengine-codegen
         run: |
-          ls -la
           npm run build
 
       - name: Install backengine project dependencies

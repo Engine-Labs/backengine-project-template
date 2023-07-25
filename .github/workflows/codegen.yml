@@ -59,7 +59,7 @@ jobs:
         run: npm ci
 
       - name: Set current date as env variable
-        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+        run: echo "NOW=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Create a new branch
         run: git checkout -b backengine-codegen-$NOW

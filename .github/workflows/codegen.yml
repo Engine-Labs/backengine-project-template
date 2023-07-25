@@ -55,11 +55,15 @@ jobs:
         working-directory: ./postgres-meta
         run: npm run dev &
 
+      - name: Install codegen package dependencies
+        working-directory: ./backengine-codegen
+        run: npm ci
+
       - name: Build codegen package
         working-directory: ./backengine-codegen
         run: npm run build
 
-      - name: Install dependencies
+      - name: Install backengine project dependencies
         run: npm ci
 
       - name: Run codegen

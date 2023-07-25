@@ -1,5 +1,6 @@
 name: backengine-codegen
 
+# TODO - add database credentials as GH Secrets to user repo and remove inputs
 on:
   workflow_dispatch:
     inputs:
@@ -37,6 +38,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.SSH_KEY }}
+          submodules: true
 
       - uses: actions/setup-node@v3
         with:

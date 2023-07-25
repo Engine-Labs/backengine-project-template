@@ -1,0 +1,78 @@
+name: specs
+
+on:
+  workflow_dispatch:
+    inputs:
+      pg_host:
+        description: "Postgres hostname"
+        required: true
+        default: "postgres"
+      pg_db_name:
+        description: "Postgres database name"
+        required: true
+        default: "postgres"
+      pg_user:
+        description: "Postgres user"
+        required: true
+        default: "postgres"
+      pg_password:
+        description: "Postgres password"
+        required: true
+        default: "postgres"
+
+env:
+  PG_META_HOST: "0.0.0.0"
+  PG_META_PORT: 8080
+  PG_META_DB_PORT: 5432
+  PG_META_DB_HOST: ${{ github.event.inputs.pg_host }}
+  PG_META_DB_NAME: ${{ github.event.inputs.pg_db_name }}
+  PG_META_DB_USER: ${{ github.event.inputs.pg_user }}
+  PG_META_DB_PASSWORD: ${{ github.event.inputs.pg_password }}
+
+jobs:
+  specs:
+    name: Backengine Codegen
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "lst/Hydrogen"
+
+      - uses: actions/checkout@v3
+        with:
+          repository: "supabase/postgres-meta"
+          path: "postgres-meta"
+
+      - name: Install postgres-meta dependencies
+        working-directory: ./postgres-meta
+        run: npm ci
+
+      - name: Run postgres-meta
+        working-directory: ./postgres-meta
+        run: npm run dev
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set current date as env variable
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Create a new branch
+        run: git checkout -b backengine-codegen-$NOW
+
+      - name: Run codegen
+        working-directory: ./backengine
+        run: npm run generate
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "codegen@backengine.dev"
+          git config --local user.name "Backengine"
+          git add .
+          git commit -m "Backengine codegen - $NOW"
+
+      - name: Create PR
+        run: gh pr create -B main -H backengine-codegen-$NOW --title 'Backengine codegen' --body 'Created by Backengine - $NOW' --no-maintainer-edit

@@ -46,18 +46,17 @@ jobs:
         with:
           node-version: "lts/Hydrogen"
 
-      - uses: actions/checkout@v3
-        with:
-          repository: "supabase/postgres-meta"
-          path: "postgres-meta"
+      - name: Install postgres-meta
+        run: |
+          mkdir -p ./postgres-meta
+          cd ./postgres-meta
+          wget https://github.com/supabase/postgres-meta/releases/download/v0.67.0/postgres-meta-0.67.0-x86_64-linux-gnu.tar.gz
+          tar -xvf postgres-meta-0.67.0-x86_64-linux-gnu.tar.gz
+          chmod +x ./postgres-meta
 
-      - name: Install postgres-meta dependencies
+      - name: Start postgres-meta
         working-directory: ./postgres-meta
-        run: npm ci
-
-      - name: Run postgres-meta in background
-        working-directory: ./postgres-meta
-        run: npm run db:run
+        run: ./postgres-meta
 
       - name: Install codegen package dependencies
         working-directory: ./backengine-codegen
@@ -85,7 +84,7 @@ jobs:
         run: |
           git config --local user.email "codegen@backengine.dev"
           git config --local user.name "Backengine"
-          git add .
+          git add -- . ':!<postgres-meta>'
           git commit -m "Backengine codegen - $NOW"
 
       - name: Create PR

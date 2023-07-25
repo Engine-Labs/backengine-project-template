@@ -55,18 +55,21 @@ jobs:
         working-directory: ./postgres-meta
         run: npm run dev &
 
+      - name: Build codegen package
+        working-directory: ./backengine-codegen
+        run: npm run build
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Run codegen
+        run: npm run generate
 
       - name: Set current date as env variable
         run: echo "NOW=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Create a new branch
         run: git checkout -b backengine-codegen-$NOW
-
-      - name: Run codegen
-        working-directory: ./backengine
-        run: npm run generate
 
       - name: Commit changes
         run: |

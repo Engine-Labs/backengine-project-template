@@ -57,7 +57,7 @@ jobs:
 
       - name: Run postgres-meta in background
         working-directory: ./postgres-meta
-        run: npm run dev &
+        run: npm run db:run
 
       - name: Install codegen package dependencies
         working-directory: ./backengine-codegen

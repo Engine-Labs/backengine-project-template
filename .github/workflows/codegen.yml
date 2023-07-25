@@ -23,7 +23,7 @@ on:
 
 env:
   PG_META_HOST: "0.0.0.0"
-  PG_META_PORT: 8080
+  PG_META_PORT: 1337
   PG_META_DB_PORT: 5432
   PG_META_DB_HOST: ${{ github.event.inputs.pg_host }}
   PG_META_DB_NAME: ${{ github.event.inputs.pg_dbname }}

@@ -1,6 +1,5 @@
 name: backengine-codegen
 
-# TODO - add database credentials as GH Secrets to user repo and remove inputs
 on:
   workflow_dispatch:
 

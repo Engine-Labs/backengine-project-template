@@ -1,20 +1,12 @@
 name: backengine-codegen
 
-# TODO - add database credentials as GH Secrets to user repo and remove inputs
 on:
   workflow_dispatch:
-    inputs:
-      supabase_project_id:
-        description: "Supabase project Id"
-        required: true
-      supabase_management_api_access_token:
-        description: "Supabase management API access token"
-        required: true
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  SUPABASE_PROJECT_ID: ${{ github.event.inputs.supabase_project_id }}
-  SUPABASE_MANAGEMENT_API_ACCESS_TOKEN: ${{ github.event.inputs.supabase_management_api_access_token }}
+  SUPABASE_PROJECT_ID: ${{ secrets.supabase_project_id }}
+  SUPABASE_MANAGEMENT_API_ACCESS_TOKEN: ${{ secrets.supabase_management_api_access_token }}
 
 jobs:
   specs:
@@ -24,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.CODEGEN_TOKEN }}
+          token: ${{ secrets.backengine_template_token }}
           submodules: true
 
       - uses: actions/setup-node@v3

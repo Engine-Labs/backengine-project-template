@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Checkout submodules using a PAT
+      - name: Checkout codegen submodule
         run: |
           git config --file .gitmodules --get-regexp url | while read url; do
             git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/${{ secrets.BACKENGINE_TEMPLATE_TOKEN }}:${{ secrets.BACKENGINE_TEMPLATE_TOKEN }}@github.com\//")
@@ -57,7 +57,7 @@ jobs:
           git config --local user.email "codegen@backengine.dev"
           git config --local user.name "Backengine"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git add .
+          git add src
           git commit -m "Backengine codegen - $NOW"
 
       - name: Push changes

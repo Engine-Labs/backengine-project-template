@@ -53,6 +53,7 @@ jobs:
         run: |
           git config --local user.email "codegen@backengine.dev"
           git config --local user.name "Backengine"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add .
           git commit -m "Backengine codegen - $NOW"
 

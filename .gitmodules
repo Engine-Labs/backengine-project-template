@@ -1,3 +1,0 @@
-[submodule "backengine-codegen"]
-	path = backengine-codegen
-	url = https://github.com/Altroleum/supabase-codegen

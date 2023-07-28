@@ -19,28 +19,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Checkout codegen submodule
-        run: |
-          git config --file .gitmodules --get-regexp url | while read url; do
-            git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/${{ secrets.BACKENGINE_TEMPLATE_TOKEN }}:${{ secrets.BACKENGINE_TEMPLATE_TOKEN }}@github.com\//")
-          done
-          git submodule sync
-          git submodule update --init --recursive
-
       - uses: actions/setup-node@v3
         with:
           node-version: "lts/Hydrogen"
 
-      - name: Install codegen package dependencies
-        working-directory: ./backengine-codegen
-        run: npm ci
-
-      - name: Build codegen package
-        working-directory: ./backengine-codegen
-        run: |
-          npm run build
-
-      - name: Install backengine project dependencies
+      - name: Install project dependencies
         run: npm ci
 
       - name: Run codegen

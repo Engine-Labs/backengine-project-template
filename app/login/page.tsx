@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Link from "next/link";
+import BackengineLogo from "@/components/BackengineLogo";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -46,6 +47,9 @@ export default function Login() {
         className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
         onSubmit={handleSignIn}
       >
+        <div className="flex justify-center pb-6">
+          <BackengineLogo />
+        </div>
         <label className="text-md" htmlFor="email">
           Email
         </label>

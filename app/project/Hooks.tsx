@@ -7,7 +7,7 @@ export type Metadata = {
   name: string;
   location: string;
   type: string;
-  entity: string;
+  entity: "TABLE" | "VIEW";
   usage: string;
 };
 

@@ -3,9 +3,9 @@ import {
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import Hooks from "./Hooks";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 

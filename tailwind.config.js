@@ -6,6 +6,8 @@ module.exports = {
       colors: {
         brand: {
           green: "#1BBA89",
+          blue: "#ABCCD6",
+          lavender: "#8987B0",
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

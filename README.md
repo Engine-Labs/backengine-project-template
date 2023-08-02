@@ -13,3 +13,7 @@ This starter configures a Next.js app for use with [Backengine](https://backengi
 3. Run `npm run dev` to start the local development server
 4. Login to view your project overview page (default credentials are `admin@backengine.dev` and `password`)
 
+## Code Generation
+
+The `__backengine__` directory in the root of the project contains code auto-generated from your Backengine database schema. 
+

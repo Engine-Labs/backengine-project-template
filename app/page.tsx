@@ -1,6 +1,5 @@
 import BackengineLogo from "@/components/BackengineLogo";
 import NextJsLogo from "@/components/NextJsLogo";
-import SupabaseLogo from "@/components/SupabaseLogo";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Link from "next/link";
@@ -21,17 +20,12 @@ export default async function Index() {
           <div className="flex gap-8 justify-center items-center">
             <BackengineLogo />
             <span className="border-l rotate-45 h-6" />
-            <Link href="https://supabase.com/" target="_blank">
-              <SupabaseLogo />
-            </Link>
-            <span className="border-l rotate-45 h-6" />
             <NextJsLogo />
           </div>
-          <h1 className="sr-only">Supabase and Next.js Starter Template</h1>
+          <h1 className="sr-only">Backengine and Next.js Starter Template</h1>
           <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
             The fastest way to start building apps with{" "}
-            <strong>Backengine</strong>, <strong>Supabase</strong> and{" "}
-            <strong>Next.js</strong>
+            <strong>Backengine</strong> and <strong>Next.js</strong>
           </p>
           {user && (
             <>

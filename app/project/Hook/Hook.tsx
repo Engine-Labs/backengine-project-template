@@ -1,5 +1,6 @@
-import type { Metadata } from "./Hooks";
-import Usage from "./Usage";
+import type { Metadata } from "../Hooks";
+import Usage from "../Usage";
+import RunHookButton from "./RunHookButton";
 
 export default function Hook({ hookMetadata }: { hookMetadata: Metadata }) {
   const { name, entity, location } = hookMetadata;
@@ -23,6 +24,7 @@ export default function Hook({ hookMetadata }: { hookMetadata: Metadata }) {
       </div>
       <code className="text-xs font-mono">{location}</code>
       <Usage hookMetadata={hookMetadata} />
+      <RunHookButton hookMetadata={hookMetadata} />
     </div>
   );
 }

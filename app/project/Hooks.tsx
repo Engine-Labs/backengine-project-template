@@ -1,5 +1,5 @@
 import json from "@/__backengine__/metadata.json";
-import Hook from "./Hook";
+import Hook from "./Hook/Hook";
 
 // TODO: move to generated types file?
 export type Metadata = {

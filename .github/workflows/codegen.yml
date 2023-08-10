@@ -7,6 +7,8 @@ on:
         description: "Backengine project API key"
       project_id:
         description: "Backengine project Id"
+      base_url:
+        description: "Backengine base url"
 permissions:
   contents: write
   pull-requests: write
@@ -17,6 +19,7 @@ env:
   GH_TOKEN: ${{ github.token }}
   BACKENGINE_API_KEY: ${{ github.event.inputs.BACKENGINE_API_KEY }}
   BACKENGINE_PROJECT_ID: ${{ github.event.inputs.BACKENGINE_PROJECT_ID }}
+  BACKENGINE_BASE_URL: ${{ github.event.inputs.BACKENGINE_BASE_URL }}
 
 jobs:
   specs:

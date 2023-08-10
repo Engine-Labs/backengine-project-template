@@ -17,9 +17,9 @@ env:
   SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
   SUPABASE_MANAGEMENT_API_ACCESS_TOKEN: ${{ secrets.SUPABASE_MANAGEMENT_API_ACCESS_TOKEN }}
   GH_TOKEN: ${{ github.token }}
-  BACKENGINE_API_KEY: ${{ github.event.inputs.BACKENGINE_API_KEY }}
-  BACKENGINE_PROJECT_ID: ${{ github.event.inputs.BACKENGINE_PROJECT_ID }}
-  BACKENGINE_BASE_URL: ${{ github.event.inputs.BACKENGINE_BASE_URL }}
+  BACKENGINE_API_KEY: ${{ github.event.inputs.api_key }}
+  BACKENGINE_PROJECT_ID: ${{ github.event.inputs.project_id }}
+  BACKENGINE_BASE_URL: ${{ github.event.inputs.base_url }}
 
 jobs:
   specs:

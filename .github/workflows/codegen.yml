@@ -2,6 +2,11 @@ name: backengine-codegen
 
 on:
   workflow_dispatch:
+    inputs:
+      api_key:
+        description: "Backengine project API key"
+      project_id:
+        description: "Backengine project Id"
 permissions:
   contents: write
   pull-requests: write

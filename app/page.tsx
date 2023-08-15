@@ -40,14 +40,23 @@ export default async function Index() {
           {!user && (
             <>
               <p className="mb-12">
-                Login below to access the generated admin page for your project.
+                Login or create an account below to access the generated admin
+                page for your project.
               </p>
-              <Link
-                href="/login"
-                className="bg-foreground py-3 px-6 rounded-lg text-sm text-background"
-              >
-                Login
-              </Link>
+              <div className="space-x-4 w-full flex items-center justify-center">
+                <Link
+                  href="/login"
+                  className="bg-foreground py-3 px-6 rounded-lg text-sm text-background w-[150px] text-center hover:scale-105 transition-all duration-300"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/create"
+                  className="bg-foreground py-3 px-6 rounded-lg text-sm text-background w-[150px] text-center hover:scale-105 transition-all duration-300"
+                >
+                  Create Account
+                </Link>
+              </div>
             </>
           )}
         </div>

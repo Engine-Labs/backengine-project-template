@@ -3,9 +3,13 @@
 import { useState } from "react";
 import type { Metadata } from "../Hooks";
 
-const parseDir = (entityType: "TABLE" | "VIEW") => {
+const parseDir = (entityType: "TABLE" | "VIEW" | "JOIN_TABLE") => {
   if (entityType === "TABLE") {
     return "tables";
+  }
+
+  if (entityType === "JOIN_TABLE") {
+    return "joinTables";
   }
 
   return "views";
@@ -13,11 +17,6 @@ const parseDir = (entityType: "TABLE" | "VIEW") => {
 
 export default function RunHook({ hookMetadata }: { hookMetadata: Metadata }) {
   const [isError, setIsError] = useState(false);
-
-  if (hookMetadata.entityType === "JOIN_TABLE") {
-    // TODO: handle other types
-    return null;
-  }
 
   let Component = () => null;
   if (!isError) {

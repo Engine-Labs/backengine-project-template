@@ -9,6 +9,8 @@ on:
         description: "Backengine project Id"
       base_url:
         description: "Backengine base url"
+      commit_email:
+        description: "Email address for commits"
 permissions:
   contents: write
   pull-requests: write
@@ -48,7 +50,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "codegen@backengine.dev"
+          git config --local user.email ${{ github.event.inputs.commit_email }}
           git config --local user.name "Backengine"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add .

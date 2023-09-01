@@ -52,9 +52,15 @@ export default function Login() {
           value={password}
           placeholder="••••••••"
         />
-        <button className="bg-green-700 rounded px-4 py-2 text-white mb-6">
-          Sign In
+        <button className="bg-green-700 rounded px-4 py-2 text-white mb-2">
+          Login
         </button>
+        <div className="flex text-center w-full justify-center">
+          No account?&nbsp;
+          <Link href="/create" className="hover:text-brand-green">
+            Sign up
+          </Link>
+        </div>
       </form>
     </div>
   );

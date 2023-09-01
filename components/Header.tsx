@@ -1,49 +1,36 @@
-"use client";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import HeaderLink from "./HeaderLink";
+import SignOutButton from "./SignOutButton";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
+export const dynamic = "force-dynamic";
 
-export default function Header() {
-  const pathname = usePathname();
+export default async function Header() {
+  const supabase = createServerComponentClient({ cookies });
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   return (
-    <div className="flex w-full border-b py-5 text-sm text-neutral-100 items-start justify-between">
+    <div className="h-16 flex w-full border-b text-sm text-neutral-100 items-center justify-between">
       <div className="flex space-x-4">
-        <Link
-          href="/"
-          className={`p-2 hover:bg-gray-800 rounded-md cursor-pointer ${
-            pathname === "/" && "bg-gray-800"
-          }`}
-        >
-          Home
-        </Link>
-        <Link
-          href="/project"
-          className={`p-2 hover:bg-gray-800 rounded-md cursor-pointer ${
-            pathname === "/project" && "bg-gray-800"
-          }`}
-        >
-          API
-        </Link>
+        <HeaderLink text="Home" href="/" />
+        <HeaderLink text="API" href="/project" />
       </div>
       <div className="flex gap-4">
-        <Link
-          href="/create"
-          className={`p-2 hover:bg-gray-800 rounded-md cursor-pointer ${
-            pathname === "/create" && "bg-gray-800"
-          }`}
-        >
-          Signup
-        </Link>
-        <Link
-          href="/login"
-          className={`p-2 hover:bg-gray-800 rounded-md cursor-pointer ${
-            pathname === "/login" && "bg-gray-800"
-          }`}
-        >
-          Login
-        </Link>
+        {user && (
+          <div className="flex items-center">
+            <div className="px-4">{user.email}</div>
+            <SignOutButton />
+          </div>
+        )}
+        {!user && (
+          <>
+            <HeaderLink text="Signup" href="/create" />
+            <HeaderLink text="Login" href="/login" />
+          </>
+        )}
       </div>
     </div>
   );

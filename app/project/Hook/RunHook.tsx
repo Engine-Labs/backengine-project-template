@@ -22,9 +22,11 @@ export default function RunHook({ hookMetadata }: { hookMetadata: Metadata }) {
   if (!isError) {
     try {
       const sanitisedName = hookMetadata.name.replace("use", "");
-      Component = require(`@/__backengine__/components/${parseDir(
-        hookMetadata.entityType
-      )}/${sanitisedName}`).default;
+      Component = require(
+        `@/__backengine__/components/${parseDir(
+          hookMetadata.entityType
+        )}/${sanitisedName}`
+      ).default;
     } catch {
       setIsError(true);
     }

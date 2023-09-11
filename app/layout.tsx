@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from "@/components/Header";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
   title: "Backengine Starter",
@@ -16,10 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background">
-        <main className="min-h-screen flex flex-col items-center max-w-4xl mx-auto">
-          <Header />
-          {children}
-        </main>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <main className="min-h-screen flex flex-col items-center max-w-4xl mx-auto">
+            <Header />
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

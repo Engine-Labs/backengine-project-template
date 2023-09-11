@@ -1,11 +1,13 @@
 import BackengineLogo from "@/components/BackengineLogo";
 import NextJsLogo from "@/components/NextJsLogo";
 import Link from "next/link";
+// COMPONENT_IMPORTS
 
 export default async function Index() {
   return (
-    <div className="w-full flex flex-col items-center justify-center flex-1">
-      <div className="animate-in flex flex-col opacity-0 max-w-4xl px-3 text-foreground">
+    <div className="w-full flex flex-col flex-1">
+      {/* COMPONENTS */}
+      <div className="flex flex-col opacity-100 max-w-4xl px-3 z-50">
         <div className="flex flex-col items-center mb-4 lg:mb-12">
           <div className="flex gap-8 justify-center items-center">
             <BackengineLogo />

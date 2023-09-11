@@ -17,6 +17,8 @@ export default async function Header() {
       <div className="flex space-x-4">
         <HeaderLink text="Home" href="/" />
         <HeaderLink text="API" href="/project" />
+        {/* HEADER_LINKS */}
+        {/* END_HEADER_LINKS */}
       </div>
       <div className="flex gap-4">
         {user && (

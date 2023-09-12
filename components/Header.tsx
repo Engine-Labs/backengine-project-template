@@ -2,6 +2,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import HeaderLink from "./HeaderLink";
 import SignOutButton from "./SignOutButton";
+import headerLinks from "./header.json";
 
 export const dynamic = "force-dynamic";
 
@@ -17,8 +18,9 @@ export default async function Header() {
       <div className="flex space-x-4">
         <HeaderLink text="Home" href="/" />
         <HeaderLink text="API" href="/project" />
-        {/* HEADER_LINKS */}
-        {/* END_HEADER_LINKS */}
+        {headerLinks.map((headerLink: any) => {
+          return <HeaderLink text={headerLink.title} href={headerLink.href} />;
+        })}
       </div>
       <div className="flex gap-4">
         {user && (

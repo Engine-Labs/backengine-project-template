@@ -12,11 +12,14 @@ export default function HeaderLink({
 }) {
   const pathname = usePathname();
 
+  const isActive =
+    (href === "/" && pathname === "/") ||
+    (href !== "/" && pathname.startsWith(href));
   return (
     <Link
       href={href}
       className={`py-2 px-4 hover:bg-gray-800 rounded-md cursor-pointer ${
-        pathname === href && "bg-gray-800"
+        isActive && "bg-gray-800"
       }`}
     >
       {text}

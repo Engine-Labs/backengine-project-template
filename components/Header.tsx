@@ -18,7 +18,7 @@ export default async function Header() {
       <div className="flex space-x-4">
         <HeaderLink text="Home" href="/" />
         <HeaderLink text="API" href="/project" />
-        {headerLinks.map((headerLink: any) => {
+        {headerLinks.map((headerLink: { title: string; href: string }) => {
           return <HeaderLink text={headerLink.title} href={headerLink.href} />;
         })}
       </div>

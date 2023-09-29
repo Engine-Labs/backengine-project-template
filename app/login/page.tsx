@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Link from "next/link";
 import BackengineLogo from "@/components/BackengineLogo";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -23,28 +26,32 @@ export default function Login() {
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
+    <div className="flex-1 flex flex-col w-full justify-center">
       <form
-        className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
+        className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground sm:max-w-md mx-auto"
         onSubmit={handleSignIn}
       >
-        <div className="flex justify-center pb-6">
-          <BackengineLogo />
+        <div className="flex flex-col space-y-2 text-center pb-4">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            Login to your account
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            Enter your details below to gain access
+          </p>
         </div>
-        <label className="text-md" htmlFor="email">
+        <Label className="text-md" htmlFor="email">
           Email
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+        </Label>
+        <Input
           name="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           placeholder="you@example.com"
         />
-        <label className="text-md" htmlFor="password">
+        <Label className="text-md" htmlFor="password">
           Password
-        </label>
-        <input
+        </Label>
+        <Input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           type="password"
           name="password"
@@ -52,12 +59,13 @@ export default function Login() {
           value={password}
           placeholder="••••••••"
         />
-        <button className="bg-green-700 rounded px-4 py-2 text-white mb-2">
-          Login
-        </button>
-        <div className="flex text-center w-full justify-center">
+        <Button>Login</Button>
+        <div className="flex text-center w-full justify-center text-sm">
           No account?&nbsp;
-          <Link href="/create" className="hover:text-brand-green">
+          <Link
+            href="/create"
+            className="text-muted-foreground hover:text-primary"
+          >
             Sign up
           </Link>
         </div>

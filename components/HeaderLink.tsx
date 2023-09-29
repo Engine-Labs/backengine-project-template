@@ -18,8 +18,8 @@ export default function HeaderLink({
   return (
     <Link
       href={href}
-      className={`py-2 px-4 hover:bg-gray-800 rounded-md cursor-pointer ${
-        isActive && "bg-gray-800"
+      className={`text-muted-foreground py-2 px-4 hover:bg-gray-800 hover:text-neutral-100 rounded-md cursor-pointer ${
+        isActive && "text-neutral-100 bg-gray-800"
       }`}
     >
       {text}

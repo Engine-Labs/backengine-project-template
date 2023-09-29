@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default async function Index() {
   return (
-    <div className="w-full flex flex-col flex-1">
+    <div className="w-full flex flex-col flex-1 justify-center">
       {/* COMPONENTS */}
-      <div className="flex flex-col opacity-100 max-w-4xl px-3 z-50">
+      <div className="flex flex-col">
         <div className="flex flex-col items-center mb-4 lg:mb-12">
           <div className="flex gap-8 justify-center items-center">
             <BackengineLogo />

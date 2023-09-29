@@ -17,10 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background">
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <main className="min-h-screen flex flex-col items-center max-w-4xl mx-auto">
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <main className="min-h-screen flex flex-col max-w-7xl mx-auto">
             <Header />
-            {children}
+            <div className="flex-1 border w-full flex rounded-lg bg-background shadow mb-24">
+              {children}
+            </div>
           </main>
         </ThemeProvider>
       </body>

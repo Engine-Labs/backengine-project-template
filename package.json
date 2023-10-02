@@ -22,7 +22,7 @@
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "lucide-react": "^0.274.0",
-    "next": "latest",
+    "next": "^13.5.3",
     "next-themes": "^0.2.1",
     "postcss": "8.4.24",
     "react": "18.2.0",
@@ -35,7 +35,6 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@backengine/codegen": "^2.0.0",
     "@types/node": "20.3.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",

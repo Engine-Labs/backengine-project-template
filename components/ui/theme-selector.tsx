@@ -40,9 +40,7 @@ export function ThemeSelector() {
           aria-expanded={isOpen}
           className="w-[125px] justify-between"
         >
-          {theme
-            ? themes.find(({ value }) => value === theme)?.label
-            : "Select framework..."}
+          {theme ? themes.find(({ value }) => value === theme)?.label : "Light"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

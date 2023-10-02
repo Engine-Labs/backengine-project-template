@@ -24,7 +24,6 @@ export default async function Header() {
         })}
       </div>
       <div className="flex gap-4">
-        <ThemeSelector />
         {user && (
           <div className="flex items-center">
             <div className="px-4">{user.email}</div>
@@ -37,6 +36,7 @@ export default async function Header() {
             <HeaderLink text="Login" href="/login" />
           </>
         )}
+        <ThemeSelector />
       </div>
     </div>
   );

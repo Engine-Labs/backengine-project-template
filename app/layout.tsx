@@ -1,6 +1,6 @@
 import "./globals.css";
 import Header from "@/components/Header";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "Backengine Starter",

@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -18,9 +19,12 @@ export default function HeaderLink({
   return (
     <Link
       href={href}
-      className={`py-2 px-4 hover:bg-gray-800 rounded-md cursor-pointer ${
-        isActive && "bg-gray-800"
-      }`}
+      className={cn(
+        "flex items-center px-4 hover:text-bold hover:text-primary text-md",
+        isActive
+          ? "font-bold text-primary"
+          : "font-medium text-muted-foreground"
+      )}
     >
       {text}
     </Link>

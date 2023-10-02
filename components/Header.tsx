@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import HeaderLink from "./HeaderLink";
 import SignOutButton from "./SignOutButton";
 import headerLinks from "./header.json";
+import { ThemeSelector } from "./ui/theme-selector";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +15,7 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="h-16 flex w-full border-b text-sm text-neutral-100 items-center justify-between">
+    <div className="h-24 flex w-full text-sm dark:text-neutral-100 items-center justify-between">
       <div className="flex space-x-4">
         <HeaderLink text="Home" href="/" />
         <HeaderLink text="API" href="/project" />
@@ -35,6 +36,7 @@ export default async function Header() {
             <HeaderLink text="Login" href="/login" />
           </>
         )}
+        <ThemeSelector />
       </div>
     </div>
   );

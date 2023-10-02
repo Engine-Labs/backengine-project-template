@@ -11,5 +11,9 @@ export default function BackButton() {
     router.back();
   };
 
-  return <Button onClick={handleClick}>Back</Button>;
+  return (
+    <Button onClick={handleClick} variant="outline">
+      Back
+    </Button>
+  );
 }
